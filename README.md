@@ -8,7 +8,7 @@ The Decentralized Events Platform is a blockchain-based solution for organizing,
 
 Experience the Decentralized Events Platform in action! Check out our live demo:
 
-[View Demo](https://your-demo-url-here.com)
+[View Demo](https://dotrave-eventfi-app.replit.app/)
 
 ## Documentation
 
