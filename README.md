@@ -12,14 +12,21 @@ Experience the Decentralized Events Platform in action! Check out our live demo:
 
 ## Documentation
 
-- [Streamflow Integration](streamflow_integration.md): Details on how the platform integrates Streamflow's financial tools for token distribution, vesting, staking, and automated payroll.
-- [About Streamflow](streamflow_about.md): An overview of Streamflow and its key features.
-- [Stakeholder Views](stakeholder_views.md): Core views for the stakeholders' app, excluding attendees.
-- [Metaplex MPL-404 Integration](metaplex_mpl404_integration.md): Information on how the platform leverages Metaplex MPL-404 for hybrid asset management and dynamic NFT functionality.
-- [About MPL-404](metaplex_MPL404_about.md): An overview of MPL-404 and its key features.
 - [Decentralized Events Lite Paper](decentralized_events_lite_paper.md): A comprehensive overview of the platform's architecture, processes, and potential impact.
+
+- [Streamflow Integration](streamflow_integration.md): Details on how the platform integrates Streamflow's financial tools for token distribution, vesting, staking, and automated payroll.
+
+- [Metaplex MPL-404 Integration](metaplex_mpl404_integration.md): Information on how the platform leverages Metaplex MPL-404 for hybrid asset management and dynamic NFT functionality.
+
 - [User Stories](decentralized_events_user_stories.md): Detailed user stories for various stakeholders in the platform.
+
+- [Stakeholder Views](stakeholder_views.md): Core views for the stakeholders' app, excluding attendees.
+
 - [Attendee Views](attendee_views.md): Core views for the attendees' app.
+
+- [About Streamflow](streamflow_about.md): An overview of Streamflow and its key features.
+
+- [About MPL-404](metaplex_MPL404_about.md): An overview of MPL-404 and its key features.
 
 ## License
 
