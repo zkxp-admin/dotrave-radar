@@ -3,4 +3,5 @@ run = "node index.html"
 channel = "stable-24_05"
 
 [deployment]
-run = ["sh", "-c", "node index.html"]
+deploymentTarget = "static"
+publicDir = "decentralized-events-app"
