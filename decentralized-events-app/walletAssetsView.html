@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wallet and Assets</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@200;400;600&display=swap" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+  <style>
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+    .asset-icon {
+      width: 40px;
+      height: 40px;
+      background-color: #007aff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    .asset-balance {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    .transaction-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e5e5ea;
+    }
+    .transaction-amount {
+      font-weight: 600;
+    }
+    .transaction-date {
+      font-size: 0.8rem;
+      color: #8e8e93;
+    }
+  </style>
+</head>
+<body class="py-4 px-2">
+  <div class="container mx-auto">
+
+    <div class="dashboard-grid">
+      <div class="card">
+        <h2 class="text-xl mb-4">Total Balance</h2>
+        <p class="asset-balance mb-2">$12,345.67 USD</p>
+        <div class="flex justify-between">
+          <button class="btn">Send</button>
+          <button class="btn bg-green-500 hover:bg-green-600">Receive</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="text-xl mb-4">Assets</h2>
+        <div class="space-y-4">
+          <div class="flex items-center">
+            <div class="asset-icon mr-3">SOL</div>
+            <div>
+              <p class="font-medium">Solana</p>
+              <p class="asset-balance">200 SOL</p>
+            </div>
+          </div>
+          <div class="flex items-center">
+            <div class="asset-icon mr-3">MPL</div>
+            <div>
+              <p class="font-medium">MPL-404 Token</p>
+              <p class="asset-balance">5,000 MPL</p>
+            </div>
+          </div>
+          <div class="flex items-center">
+            <div class="asset-icon mr-3">NFT</div>
+            <div>
+              <p class="font-medium">NFTs</p>
+              <p>3 Contracts</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="text-xl mb-4">Transaction History</h2>
+        <div class="space-y-2">
+          <div class="transaction-item">
+            <div>
+              <p class="font-medium">Received Event Profit</p>
+              <p class="transaction-date">December 16, 2023</p>
+            </div>
+            <p class="transaction-amount text-green-500">+50 SOL</p>
+          </div>
+          <div class="transaction-item">
+            <div>
+              <p class="font-medium">Locked for Venue Contract</p>
+              <p class="transaction-date">December 1, 2023</p>
+            </div>
+            <p class="transaction-amount text-red-500">-10 SOL</p>
+          </div>
+        </div>
+        <button class="btn w-full mt-4">View All Transactions</button>
+      </div>
+
+      <div class="card">
+        <h2 class="text-xl mb-4">Staking and Rewards</h2>
+        <p class="mb-3">You have staked 1,000 MPL-404 tokens.</p>
+        <p class="mb-3">Available Rewards: 200 MPL-404 Tokens</p>
+        <div class="flex justify-between">
+          <button class="btn">Manage Staking</button>
+          <button class="btn bg-yellow-500 hover:bg-yellow-600">Claim Rewards</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

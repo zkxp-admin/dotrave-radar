@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financial Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@200;400;600&display=swap" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .chart-container {
+      position: relative;
+      height: 200px;
+      margin-bottom: 1rem;
+    }
+    .financial-summary-item {
+      background-color: #f0f4ff;
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .financial-summary-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #007aff;
+      margin-bottom: 0.5rem;
+    }
+    .financial-summary-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    .table-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .status-box {
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto px-4 py-6">
+
+    <div class="card mb-6">
+      <h2 class="text-xl font-semibold mb-4">Financial Summary</h2>
+      <div class="space-y-4">
+        <div class="financial-summary-item">
+          <p class="financial-summary-title">Revenue</p>
+          <p class="financial-summary-value">300 SOL</p>
+          <p class="text-sm text-gray-600">Ticket Sales: 200 SOL | Sponsorships: 100 SOL</p>
+        </div>
+        <div class="financial-summary-item">
+          <p class="financial-summary-title">Expenses</p>
+          <p class="financial-summary-value">160 SOL</p>
+          <p class="text-sm text-gray-600">Artists: 80 SOL | Venue: 50 SOL | Production: 30 SOL</p>
+        </div>
+        <div class="financial-summary-item">
+          <p class="financial-summary-title">Profit</p>
+          <p class="financial-summary-value">140 SOL</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-6">
+      <h2 class="text-xl font-semibold mb-4">Streamflow Vesting</h2>
+      <p class="mb-4">Vesting Schedules Set Up</p>
+      <button class="btn w-full">View Vesting Details</button>
+    </div>
+
+    <div class="card mb-6">
+      <h2 class="text-xl font-semibold mb-4">Revenue Breakdown</h2>
+      <div class="chart-container">
+        <canvas id="revenueChart"></canvas>
+      </div>
+    </div>
+
+    <div class="card mb-6">
+      <h2 class="text-xl font-semibold mb-4">Expense Tracking</h2>
+      <div class="chart-container">
+        <canvas id="expenseChart"></canvas>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="text-xl font-semibold mb-4">Financial Overview</h2>
+      <div class="table-scroll">
+        <table id="financialOverviewTable" class="w-full">
+          <thead>
+            <tr>
+              <th class="text-left">Category</th>
+              <th class="text-left">Amount (SOL)</th>
+              <th class="text-left">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Table content will be dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Sample data for charts
+    const revenueData = {
+      labels: ['Ticket Sales', 'Sponsorships', 'Merchandise', 'Other'],
+      datasets: [{
+        label: 'Revenue (SOL)',
+        data: [200, 100, 50, 20],
+        backgroundColor: ['#6200EA', '#03DAC6', '#FFC107', '#FF5722']
+      }]
+    };
+
+    const expenseData = {
+      labels: ['Venue', 'Artists', 'Logistics', 'Marketing'],
+      datasets: [{
+        label: 'Expenses (SOL)',
+        data: [50, 80, 30, 20],
+        backgroundColor: '#CF6679',
+        borderColor: '#CF6679',
+        borderWidth: 1
+      }]
+    };
+
+    // Create charts
+    const ctxRevenue = document.getElementById('revenueChart').getContext('2d');
+    const ctxExpense = document.getElementById('expenseChart').getContext('2d');
+
+    new Chart(ctxRevenue, {
+      type: 'doughnut',
+      data: revenueData,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: {
+              boxWidth: 12,
+              padding: 10
+            }
+          }
+        }
+      }
+    });
+
+    new Chart(ctxExpense, {
+      type: 'bar',
+      data: expenseData,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
+      }
+    });
+
+    // Populate financial overview table
+    function populateFinancialOverviewTable() {
+      const tableBody = document.querySelector('#financialOverviewTable tbody');
+      const sampleData = [
+        { category: 'Ticket Sales', amount: 200, status: 'Completed' },
+        { category: 'Sponsorships', amount: 100, status: 'In Progress' },
+        { category: 'Venue Costs', amount: 50, status: 'Paid' },
+        { category: 'Artist Payments', amount: 80, status: 'Pending' }
+      ];
+
+      tableBody.innerHTML = '';
+      sampleData.forEach(item => {
+        const row = `
+          <tr>
+            <td class="py-2">${item.category}</td>
+            <td class="py-2">${item.amount}</td>
+            <td class="py-2"><div class="status-box">${item.status}</div></td>
+          </tr>
+        `;
+        tableBody.innerHTML += row;
+      });
+    }
+
+    populateFinancialOverviewTable();
+  </script>
+</body>
+</html>

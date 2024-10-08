@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sponsorship Management</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@200;400;600&display=swap" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100">
+  <main class="container mx-auto px-4 py-8">
+    <div class="bg-blue-100 p-4 rounded-md mb-6">
+      <h1 class="text-3xl text-center">Festival ABC</h1>
+  </div>
+
+    <div class="card mb-8">
+      <h2 class="text-2xl mb-4">Sponsor List</h2>
+      <div class="space-y-4">
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+          <div class="flex flex-wrap justify-between items-center">
+            <h3 class="text-lg font-semibold">Crypto Corp</h3>
+            <div class="status-box bg-green-100 text-green-800">Active</div>
+          </div>
+          <div class="mt-2 grid grid-cols-2 gap-2">
+            <div>
+              <span class="text-gray-600">Amount:</span>
+              <span class="font-medium">50 SOL</span>
+            </div>
+            <div>
+              <span class="text-gray-600">Milestones:</span>
+              <span class="font-medium">3</span>
+            </div>
+          </div>
+          <div class="mt-3">
+            <a href="#" class="btn text-sm">View Contract</a>
+          </div>
+        </div>
+        
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+          <div class="flex flex-wrap justify-between items-center">
+            <h3 class="text-lg font-semibold">DeFi Solutions</h3>
+            <div class="status-box bg-yellow-100 text-yellow-800">Pending</div>
+          </div>
+          <div class="mt-2 grid grid-cols-2 gap-2">
+            <div>
+              <span class="text-gray-600">Amount:</span>
+              <span class="font-medium">30 SOL</span>
+            </div>
+            <div>
+              <span class="text-gray-600">Milestones:</span>
+              <span class="font-medium">2</span>
+            </div>
+          </div>
+          <div class="mt-3">
+            <a href="#" class="btn text-sm">Create Contract</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-8">
+      <h2 class="text-2xl mb-4">Milestone Tracking</h2>
+      <ul class="list-none space-y-2">
+        <li class="flex items-center">
+          <div class="status-box bg-green-100 text-green-800 mr-2 whitespace-nowrap">Achieved</div>
+          <span class="flex-grow">Milestone 1: Ticket Sales Target</span>
+        </li>
+        <li class="flex items-center">
+          <div class="status-box bg-blue-100 text-blue-800 mr-2 whitespace-nowrap">In Progress</div>
+          <span class="flex-grow">Milestone 2: Social Media Engagement</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <div class="card">
+        <h2 class="text-2xl mb-4">Current Funding</h2>
+        <div class="text-3xl font-bold text-blue-600">80 SOL</div>
+      </div>
+      <div class="card">
+        <h2 class="text-2xl mb-4">Funding Goals</h2>
+        <div class="h-64">
+          <canvas id="fundingGoalChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="text-2xl mb-4">Funding Allocation</h2>
+      <div class="h-64">
+        <canvas id="allocationChart"></canvas>
+      </div>
+    </div>
+  </main>
+
+  <script src="sponsorshipView.js"></script>
+</body>
+</html>

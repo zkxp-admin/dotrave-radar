@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting and Governance - Decentralized Events Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@200;400;600&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            height: 250px;
+            max-width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .notification {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            left: 1rem;
+            background-color: #007aff;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 12px;
+            display: none;
+            box-shadow: 0px 4px 12px rgba(0, 122, 255, 0.3);
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .voting-option {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: calc(50% - 0.5rem);
+            padding: 0.75rem 0.5rem;
+            border: 1px solid #d1d1d6;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            background-color: #f0f0f5;
+            color: #1c1c1e;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            font-size: 0.875rem;
+            text-align: center;
+        }
+
+        .voting-option.selected {
+            background-color: #34c759;
+            color: white;
+            border-color: #34c759;
+        }
+
+        .voting-option:nth-child(odd) {
+            margin-right: 0.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .voting-option {
+                width: auto;
+                padding: 0.75rem 1.5rem;
+                margin-right: 0.5rem;
+            }
+
+            .voting-option:nth-child(odd) {
+                margin-right: 0.5rem;
+            }
+        }
+
+        .progress-container {
+            margin-top: 1rem;
+        }
+
+        .progress-bar {
+            height: 0.5rem;
+            border-radius: 0.25rem;
+            background-color: #e5e5ea;
+        }
+
+        .progress {
+            height: 100%;
+            border-radius: 0.25rem;
+            background-color: #007aff;
+        }
+    </style>
+</head>
+<body class="py-4">
+    <section class="container mx-auto px-4">
+        <div class="card mb-6">
+            <h2 class="text-xl font-semibold mb-3">Event Voting</h2>
+            <h3 class="text-lg font-medium mb-2">Summer Solstice Rave</h3>
+            <form id="eventVotingForm">
+                <div class="space-y-2 mb-4">
+                    <button type="button" class="voting-option" data-value="excellent">Excellent</button>
+                    <button type="button" class="voting-option" data-value="good">Good</button>
+                    <button type="button" class="voting-option" data-value="average">Average</button>
+                    <button type="button" class="voting-option" data-value="poor">Poor</button>
+                </div>
+                <input type="hidden" name="eventRating" id="eventRating" required>
+                <button type="submit" class="btn w-full mt-4">Submit Vote</button>
+            </form>
+        </div>
+
+        <div class="card mb-6">
+            <h2 class="text-xl font-semibold mb-3">Contributor Performance</h2>
+            <h3 class="text-lg font-medium mb-2">DJ Stellar</h3>
+            <form id="contributorVotingForm">
+                <div class="space-y-2 mb-4">
+                    <button type="button" class="voting-option" data-value="outstanding">Outstanding</button>
+                    <button type="button" class="voting-option" data-value="aboveAverage">Above Average</button>
+                    <button type="button" class="voting-option" data-value="meetExpectations">Meet Expectations</button>
+                    <button type="button" class="voting-option" data-value="needsImprovement">Needs Improvement</button>
+                </div>
+                <input type="hidden" name="contributorRating" id="contributorRating" required>
+                <button type="submit" class="btn w-full mt-4">Submit Vote</button>
+            </form>
+        </div>
+
+        <div class="card mb-6">
+            <h2 class="text-xl font-semibold mb-3">Platform Governance</h2>
+            <h3 class="text-lg font-medium mb-2">Proposal: Increase Staking Rewards</h3>
+            <p class="mb-4">Proposal to increase staking rewards by 5% for active participants.</p>
+            <form id="proposalVotingForm">
+                <div class="space-y-2 mb-4">
+                    <button type="button" class="voting-option" data-value="for">For</button>
+                    <button type="button" class="voting-option" data-value="against">Against</button>
+                </div>
+                <input type="hidden" name="proposalVote" id="proposalVote" required>
+                <button type="submit" class="btn w-full">Cast Vote</button>
+            </form>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div id="proposalProgress" class="progress" style="width: 0%"></div>
+                </div>
+                <p class="mt-2 text-sm">Current votes: <span id="forVotes">0</span> For, <span id="againstVotes">0</span> Against</p>
+            </div>
+        </div>
+
+        <div class="card mb-6">
+            <h2 class="text-xl font-semibold mb-3">Decentralized Decision Making</h2>
+            <p class="mb-4">Voting power distribution:</p>
+            <div class="space-y-4 mb-4">
+                <label class="block">
+                    Organizers:
+                    <input type="number" id="organizerPower" min="0" max="100" value="50" class="w-full mt-1 px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </label>
+                <label class="block">
+                    Contributors:
+                    <input type="number" id="contributorPower" min="0" max="100" value="50" class="w-full mt-1 px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </label>
+            </div>
+            <button onclick="updateVotingPower()" class="btn w-full">Update Voting Power</button>
+        </div>
+
+        <div class="card">
+            <h2 class="text-xl font-semibold mb-3">Event Performance Metrics</h2>
+            <div class="chart-container">
+                <canvas id="performanceChart"></canvas>
+            </div>
+        </div>
+    </section>
+    <div class="notification" id="notification"></div>
+    <script src="votingGovernance.js"></script>
+</body>
+</html>

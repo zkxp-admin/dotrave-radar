@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contributor Dashboard - Decentralized Events Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@200;400;600&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <main class="container mx-auto px-4 py-6">
+        
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold mb-4">Upcoming Events</h2>
+            <div class="space-y-4">
+                <div class="card">
+                    <h3 class="text-lg font-semibold mb-2">Summer Solstice Rave</h3>
+                    <div class="text-sm text-gray-600 mb-2">
+                        <p>Date: June 21, 2024</p>
+                        <p>Venue: Warehouse 23</p>
+                        <p>Role: DJ</p>
+                    </div>
+                    <h4 class="font-semibold mt-3 mb-2">Tasks:</h4>
+                    <ul class="task-list text-sm">
+                        <li>Prepare setlist for Summer Solstice Rave</li>
+                        <li>Check equipment for the event</li>
+                        <li>Coordinate with sound technician</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 class="text-lg font-semibold mb-2">Techno Tuesday</h3>
+                    <div class="text-sm text-gray-600 mb-2">
+                        <p>Date: July 4, 2024</p>
+                        <p>Venue: Club XYZ</p>
+                        <p>Role: Sound Engineer</p>
+                    </div>
+                    <h4 class="font-semibold mt-3 mb-2">Tasks:</h4>
+                    <ul class="task-list text-sm">
+                        <li>Set up sound equipment for Techno Tuesday</li>
+                        <li>Check acoustics of the venue</li>
+                        <li>Coordinate with DJ and lighting team</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold mb-4">SOL Locking Status</h2>
+            <div class="card">
+                <h3 class="text-lg font-semibold mb-2">Blockchain Beats Festival</h3>
+                <p class="mb-2">Amount Locked: <span class="font-semibold">5 SOL</span></p>
+                <p class="mb-2">Unlock Date: <span class="font-semibold">December 16, 2023</span></p>
+                <div class="status-box">Locked</div>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold mb-4">Contract NFT Status</h2>
+            <div class="card">
+                <h3 class="text-lg font-semibold mb-2">Blockchain Beats Festival</h3>
+                <p class="mb-2">NFT ID: <span class="font-semibold">BBF2023-001</span></p>
+                <p class="mb-2">Minted Date: <span class="font-semibold">May 15, 2023</span></p>
+                <div class="status-box bg-green-100 text-green-800">Active</div>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold mb-4">Performance Metrics</h2>
+            <div class="card">
+                <div class="chart-container">
+                    <canvas id="performanceChart"></canvas>
+                </div>
+                <div class="mt-4">
+                    <h4 class="font-semibold mb-2">Ratings from Past Events</h4>
+                    <ul class="space-y-2">
+                        <li>Blockchain Beats Festival: <span class="font-semibold">4.8/5</span></li>
+                        <li>Techno Tuesday: <span class="font-semibold">4.6/5</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-4">Payout Information</h2>
+            <div class="card overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="border-b">
+                            <th class="text-left py-2">Event</th>
+                            <th class="text-left py-2">Amount</th>
+                            <th class="text-left py-2">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="py-2">Blockchain Beats Festival</td>
+                            <td class="py-2">10 SOL</td>
+                            <td class="py-2">
+                                <div class="status-box bg-yellow-100 text-yellow-800">Pending</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-2">Techno Tuesday</td>
+                            <td class="py-2">5 SOL</td>
+                            <td class="py-2">
+                                <div class="status-box bg-green-100 text-green-800">Paid</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('performanceChart').getContext('2d');
+        var performanceChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Blockchain Beats Festival', 'Techno Tuesday'],
+                datasets: [{
+                    label: 'Payout (SOL)',
+                    data: [10, 5],
+                    backgroundColor: 'rgba(0, 122, 255, 0.5)',
+                    borderColor: 'rgba(0, 122, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

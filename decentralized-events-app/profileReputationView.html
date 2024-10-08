@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@200;400;600&display=swap" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .chart-container {
+        position: relative;
+        height: 300px;
+    }
+    .badge-icon {
+        color: #FFD700; /* Yellow gold color */
+        margin-right: 0.5rem;
+    }
+  </style>
+</head>
+<body class="py-4">
+
+
+  <!-- Profile and Reputation -->
+  <section class="container">
+
+    <div class="card">
+      <div class="flex items-center mb-4">
+        <img src="pfp.png" alt="Profile Picture" class="w-24 h-24 border rounded-full mr-4 object-cover">
+        <div>
+          <h2 class="text-2xl mb-1">Personal Information</h2>
+          <p class="mb-1"><strong>Name:</strong> Zeshan N</p>
+          <p><strong>Role:</strong> Event Organizer</p>
+        </div>
+      </div>
+      <a href="#" class="btn mt-3">Edit Profile</a>
+    </div>
+
+    <div class="card">
+      <h2 class="text-2xl mb-3">On-Chain Reputation</h2>
+      <p class="mb-2"><strong>Events Organized:</strong> 10</p>
+      <p class="mb-3"><strong>Average Event Rating:</strong> 4.9/5</p>
+      <div class="badges mt-3">
+        <h3 class="text-xl mb-2">Achievements</h3>
+        <ul class="list-disc list-inside">
+          <li class="mb-1"><i class="fas fa-trophy badge-icon"></i>Top Organizer Badge</li>
+          <li><i class="fas fa-users badge-icon"></i>1000+ Attendees Badge</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="text-2xl mb-3">Privacy Settings</h2>
+      <a href="#" class="btn mt-3">Manage Privacy</a>
+    </div>
+
+    <div class="dashboard-grid">
+      <div class="card">
+        <h2 class="text-2xl mb-3">Overall Reputation Scores</h2>
+        <div class="chart-container">
+          <canvas id="reputationChart"></canvas>
+        </div>
+      </div>
+      <div class="card">
+        <h2 class="text-2xl mb-3">Performance Metrics</h2>
+        <div class="chart-container">
+          <canvas id="performanceChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="text-2xl mb-3">Top Rated Entities</h2>
+      <div class="table-container">
+        <table id="topRatedTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Reputation Score</th>
+              <th>Events Participated</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Table content will be dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="dashboard-grid">
+      <div class="card">
+        <h2 class="text-2xl mb-3">Recent Reputation Changes</h2>
+        <div class="chart-container">
+          <canvas id="reputationChangesChart"></canvas>
+        </div>
+      </div>
+      <div class="card">
+        <h2 class="text-2xl mb-3">Feedback Analysis</h2>
+        <div class="chart-container">
+          <canvas id="feedbackChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" crossorigin="anonymous"></script>
+  <script src="profileReputation.js"></script>
+</body>
+</html>

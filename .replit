@@ -1,0 +1,6 @@
+run = "node index.html"
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = ["sh", "-c", "node index.html"]

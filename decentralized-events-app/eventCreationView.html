@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@200;400;600&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+
+
+    <!-- Event Creation Form -->
+    <section class="container">
+        <h1 class="text-4xl mb-6">Create New Event</h1>
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        <form id="eventForm">
+            <div class="card">
+                <label for="event-name">Event Name</label>
+                <input type="text" id="event-name" name="event-name" required>
+
+                <label for="event-date">Date and Time</label>
+                <input type="datetime-local" id="event-date" name="event-date" required>
+
+                <label for="event-location">Location</label>
+                <input type="text" id="event-location" name="event-location" required>
+
+                <label for="event-description">Description</label>
+                <textarea id="event-description" name="event-description" rows="4" required></textarea>
+            </div>
+
+            <div class="card dynamic-form" id="ticketTypes">
+                <h3 class="text-2xl mb-4">Ticket Types</h3>
+                <div id="ticketTypesList"></div>
+                <button type="button" class="add-item" onclick="addTicketType()">Add Ticket Type</button>
+            </div>
+
+            <div class="card" id="solLocking">
+                <h3 class="text-2xl mb-4">SOL Locking Amounts for Contributors</h3>
+                <div id="solLockingList"></div>
+                <button type="button" class="add-item" onclick="addSolLocking()">Add Contributor SOL Lock</button>
+                <div class="dynamic-form-item mt-4">
+                    <input type="text" value="Event Organizer" readonly>
+                    <input type="number" name="organizer-sol-lock" placeholder="SOL Amount" step="0.01" required>
+                </div>
+            </div>
+
+            <div class="card dynamic-form" id="sponsorshipTiers">
+                <h3 class="text-2xl mb-4">Sponsorship Tiers</h3>
+                <div id="sponsorshipTiersList"></div>
+                <button type="button" class="add-item" onclick="addSponsorshipTier()">Add Sponsorship Tier</button>
+            </div>
+
+            <div class="card">
+                <label for="fundingGoal">Funding Goal (SOL)</label>
+                <input type="number" id="fundingGoal" name="fundingGoal" step="0.01" required>
+            </div>
+
+            <button type="button" class="btn mt-4" onclick="previewEvent()">Preview Event</button>
+            <button type="submit" class="btn mt-4">Create Event and Generate Smart Contract</button>
+        </form>
+    </section>
+
+
+    <!-- Preview Modal -->
+    <div id="previewModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="text-2xl mb-4">Event Preview</h2>
+            <div id="previewContent"></div>
+        </div>
+    </div>
+
+    <script src="eventCreation.js"></script>
+</body>
+</html>
